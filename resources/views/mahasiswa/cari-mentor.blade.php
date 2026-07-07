@@ -77,13 +77,13 @@
                             @else
                                 <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center mx-auto border border-2 border-primary"
                                      style="width: 80px; height: 80px; font-size: 1.8rem; color: #fff;">
-                                    {{ strtoupper(substr($mentor->user->name, 0, 1)) }}
+                                    {{ strtoupper(substr($mentor->user->nama, 0, 1)) }}
                                 </div>
                             @endif
                         </div>
 
                         <h6 class="fw-bold mb-0">
-                            {{ $mentor->gelar ? $mentor->gelar . '. ' : '' }}{{ $mentor->user->name }}
+                            {{ $mentor->gelar ? $mentor->gelar . '. ' : '' }}{{ $mentor->user->nama }}
                         </h6>
 
                         @if ($mentor->status_verifikasi === 'terverifikasi')

@@ -12,11 +12,11 @@ class MahasiswaMiddleware
     {
         $user = auth()->user();
 
-        if ($user->role === 'mentor') {
+        if ($user->peran === 'mentor') {
             return redirect()->intended(route('mentor.dashboard', absolute: false));
         }
 
-        if ($user->role !== 'mahasiswa') {
+        if ($user->peran !== 'mahasiswa') {
             abort(403, 'Akses hanya untuk Mahasiswa');
         }
 

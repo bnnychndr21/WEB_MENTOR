@@ -294,7 +294,7 @@
         </div>
 
         <nav class="sidebar-menu">
-            @if (Auth::user()->role === 'mentor')
+                        @if (Auth::user()->peran === 'mentor')
                 <div class="menu-label">Menu Mentor</div>
                 <div class="nav-item">
                     <a href="{{ route('mentor.dashboard') }}" class="nav-link {{ request()->routeIs('mentor.dashboard') ? 'active' : '' }}">
@@ -350,18 +350,18 @@
             <div class="user-info">
                 @php
                     $user = Auth::user();
-                    $fotoSidebar = $user->role === 'mentor'
+                    $fotoSidebar = $user->peran === 'mentor'
                         ? $user->mentorProfil?->foto
                         : $user->mahasiswaProfil?->foto;
                 @endphp
                 @if ($fotoSidebar)
                     <img src="{{ asset('storage/' . $fotoSidebar) }}" class="user-avatar" style="width:38px;height:38px;border-radius:50%;object-fit:cover;">
                 @else
-                    <div class="user-avatar">{{ strtoupper(substr($user->name, 0, 1)) }}</div>
+                    <div class="user-avatar">{{ strtoupper(substr($user->nama, 0, 1)) }}</div>
                 @endif
                 <div class="user-detail">
-                    <div class="user-name">{{ Auth::user()->name }}</div>
-                    <div class="user-role">{{ Auth::user()->role === 'mentor' ? 'Mentor' : 'Mahasiswa' }}</div>
+                    <div class="user-name">{{ Auth::user()->nama }}</div>
+                    <div class="user-role">{{ Auth::user()->peran === 'mentor' ? 'Mentor' : 'Mahasiswa' }}</div>
                 </div>
             </div>
         </div>
@@ -380,19 +380,19 @@
                 <div class="dropdown">
                     <a href="#" class="dropdown-user dropdown-toggle" data-bs-toggle="dropdown">
                         @php
-                            $fotoNavbar = $user->role === 'mentor'
+                            $fotoNavbar = $user->peran === 'mentor'
                                 ? $user->mentorProfil?->foto
                                 : $user->mahasiswaProfil?->foto;
                         @endphp
                         @if ($fotoNavbar)
                             <img src="{{ asset('storage/' . $fotoNavbar) }}" class="avatar-sm" style="width:34px;height:34px;border-radius:50%;object-fit:cover;">
                         @else
-                            <div class="avatar-sm">{{ strtoupper(substr($user->name, 0, 1)) }}</div>
+                            <div class="avatar-sm">{{ strtoupper(substr($user->nama, 0, 1)) }}</div>
                         @endif
-                        <span class="d-none d-sm-inline">{{ Auth::user()->name }}</span>
+                        <span class="d-none d-sm-inline">{{ Auth::user()->nama }}</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end shadow-sm" style="border-radius: .75rem; border: none; margin-top: .5rem;">
-                        @if (Auth::user()->role === 'mentor')
+            @if (Auth::user()->peran === 'mentor')
                             <li><a class="dropdown-item" href="{{ route('mentor.profil') }}"><i class="bi bi-person me-2"></i>Profil</a></li>
                         @else
                             <li><a class="dropdown-item" href="{{ route('mahasiswa.profil') }}"><i class="bi bi-person me-2"></i>Profil</a></li>

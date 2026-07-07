@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('title', 'Chat - ' . $pengajuan->mahasiswa->name)
+@section('title', 'Chat - ' . $pengajuan->mahasiswa->nama)
 
 @section('content')
 <div class="row g-0" style="height: calc(100vh - 100px);">
@@ -9,12 +9,12 @@
 
             {{-- Header --}}
             <div class="d-flex align-items-center gap-3 px-3 py-3" style="background: #f0f2f5; border-bottom: 1px solid #e5e7eb;">
-                <a href="{{ auth()->user()->role === 'mahasiswa' ? route('mahasiswa.pengajuan.index') : route('mentor.pengajuan.show', $pengajuan->id) }}"
+                <a href="{{ auth()->user()->peran === 'mahasiswa' ? route('mahasiswa.pengajuan.index') : route('mentor.pengajuan.show', $pengajuan->id) }}"
                    class="btn btn-sm rounded-circle p-1" style="background: transparent; color: #54656f;">
                     <i class="bi bi-arrow-left" style="font-size: 1.3rem;"></i>
                 </a>
                 @php
-                    $partnerFoto = auth()->user()->role === 'mahasiswa'
+                    $partnerFoto = auth()->user()->peran === 'mahasiswa'
                         ? $pengajuan->mentorProfil?->foto
                         : $pengajuan->mahasiswa?->mahasiswaProfil?->foto;
                 @endphp
@@ -30,7 +30,7 @@
                 <div class="flex-grow-1 min-w-0">
                     <div class="fw-semibold" style="font-size: .95rem; color: #111b21;">{{ $partnerName }}</div>
                     <div style="font-size: .75rem; color: #667781;">
-                        {{ auth()->user()->role === 'mahasiswa' ? 'Mentor' : 'Mahasiswa' }}
+                        {{ auth()->user()->peran === 'mahasiswa' ? 'Mentor' : 'Mahasiswa' }}
                         &middot; {{ $pengajuan->judul }}
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                 @forelse ($messages as $msg)
                     <div class="d-flex mb-2 {{ $msg->sender_id === auth()->id() ? 'justify-content-end' : '' }}">
                         <div class="chat-bubble {{ $msg->sender_id === auth()->id() ? 'chat-own' : 'chat-other' }}">
-                            <div class="chat-text">{{ $msg->message }}</div>
+                            <div class="chat-text">{{ $msg->pesan }}</div>
                             <div class="chat-time">{{ $msg->created_at->diffForHumans() }}</div>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                 @endforelse
 
                 {{-- Rating --}}
-                @if ($pengajuan->status === 'selesai' && auth()->user()->role === 'mahasiswa' && !in_array($pengajuan->id, $ratedPengajuanIds))
+                @if ($pengajuan->status === 'selesai' && auth()->user()->peran === 'mahasiswa' && !in_array($pengajuan->id, $ratedPengajuanIds))
                     <div class="text-center py-3 mt-2" style="background: rgba(255,255,255,0.85); border-radius: 10px;">
                         <div class="text-warning mb-1" style="font-size: 1.5rem;"><i class="bi bi-star-fill"></i></div>
                         <h6 class="fw-bold" style="color: #111b21; font-size: .85rem;">Konsultasi Selesai</h6>
@@ -102,7 +102,7 @@
                             </div>
                         </div>
                     </div>
-                @elseif ($pengajuan->status === 'selesai' && auth()->user()->role === 'mahasiswa' && in_array($pengajuan->id, $ratedPengajuanIds))
+                @elseif ($pengajuan->status === 'selesai' && auth()->user()->peran === 'mahasiswa' && in_array($pengajuan->id, $ratedPengajuanIds))
                     <div class="text-center py-3 mt-2" style="background: rgba(255,255,255,0.85); border-radius: 10px;">
                         <div class="text-warning mb-1" style="font-size: 1.5rem;"><i class="bi bi-star-fill"></i></div>
                         <p class="mb-0" style="color: #667781; font-size: .85rem;">Terima kasih! Anda sudah memberikan rating.</p>
@@ -257,7 +257,7 @@
                     'Accept': 'application/json',
                     'X-CSRF-TOKEN': csrfToken
                 },
-                body: JSON.stringify({ message })
+                body: JSON.stringify({ pesan: message })
             });
             const msg = await res.json();
             addMessage(msg, true);

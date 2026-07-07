@@ -13,13 +13,13 @@ class Notifikasi extends Model
         'judul',
         'pesan',
         'url',
-        'is_read',
+        'dibaca',
     ];
 
     protected function casts(): array
     {
         return [
-            'is_read' => 'boolean',
+            'dibaca' => 'boolean',
         ];
     }
 

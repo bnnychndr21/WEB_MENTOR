@@ -19,16 +19,16 @@ class ChatController extends Controller
 
         $pengajuan->load('mahasiswa', 'mentorProfil.user');
 
-        $partnerName = $user->role === 'mahasiswa'
-            ? ($pengajuan->mentorProfil->gelar ? $pengajuan->mentorProfil->gelar . '. ' : '') . $pengajuan->mentorProfil->user->name
-            : $pengajuan->mahasiswa->name;
+        $partnerName = $user->peran === 'mahasiswa'
+            ? ($pengajuan->mentorProfil->gelar ? $pengajuan->mentorProfil->gelar . '. ' : '') . $pengajuan->mentorProfil->user->nama
+            : $pengajuan->mahasiswa->nama;
 
         $messages = Chat::where('pengajuan_id', $pengajuan->id)
             ->with('sender')
             ->oldest()
             ->get();
 
-        $ratedPengajuanIds = $user->role === 'mahasiswa'
+        $ratedPengajuanIds = $user->peran === 'mahasiswa'
             ? \App\Models\Ulasan::where('mahasiswa_id', $user->id)->pluck('pengajuan_id')->toArray()
             : [];
 
@@ -55,8 +55,8 @@ class ChatController extends Controller
                 return [
                     'id' => $m->id,
                     'sender_id' => $m->sender_id,
-                    'sender_name' => $m->sender->name,
-                    'message' => e($m->message),
+                    'sender_name' => $m->sender->nama,
+                    'message' => e($m->pesan),
                     'time' => $m->created_at->diffForHumans(),
                 ];
             }),
@@ -69,34 +69,34 @@ class ChatController extends Controller
         $this->authorizeAccess($pengajuan, $user);
 
         $data = $request->validate([
-            'message' => 'required|string|max:2000',
+            'pesan' => 'required|string|max:2000',
         ]);
 
         $chat = Chat::create([
             'pengajuan_id' => $pengajuan->id,
             'sender_id' => $user->id,
-            'message' => $data['message'],
+            'pesan' => $data['pesan'],
         ]);
 
         $chat->load('sender');
 
-        $recipientId = $user->role === 'mahasiswa'
+        $recipientId = $user->peran === 'mahasiswa'
             ? $pengajuan->mentorProfil->user_id
             : $pengajuan->mahasiswa_id;
 
         Notifikasi::create([
             'user_id' => $recipientId,
-            'judul' => 'Pesan Baru dari ' . $user->name,
-            'pesan' => Str::limit($data['message'], 100),
+            'judul' => 'Pesan Baru dari ' . $user->nama,
+            'pesan' => Str::limit($data['pesan'], 100),
             'url' => route('chat.index', $pengajuan->id),
-            'is_read' => false,
+            'dibaca' => false,
         ]);
 
         return response()->json([
             'id' => $chat->id,
             'sender_id' => $chat->sender_id,
-            'sender_name' => $chat->sender->name,
-            'message' => e($chat->message),
+            'sender_name' => $chat->sender->nama,
+            'message' => e($chat->pesan),
             'time' => $chat->created_at->diffForHumans(),
         ]);
     }

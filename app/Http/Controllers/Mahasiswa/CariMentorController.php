@@ -22,11 +22,11 @@ class CariMentorController extends Controller
             ->join('users', 'users.id', '=', 'mentor_profils.user_id')
             ->leftJoin('keahlians', 'keahlians.mentor_id', '=', 'mentor_profils.id')
             ->leftJoin('kategori_keahlians', 'kategori_keahlians.id', '=', 'keahlians.kategori_id')
-            ->where('users.role', 'mentor');
+            ->where('users.peran', 'mentor');
 
         if ($keyword) {
             $query->where(function ($q) use ($keyword) {
-                $q->where('users.name', 'like', "%{$keyword}%")
+                $q->where('users.nama', 'like', "%{$keyword}%")
                   ->orWhere('kategori_keahlians.nama', 'like', "%{$keyword}%")
                   ->orWhere('mentor_profils.universitas', 'like', "%{$keyword}%")
                   ->orWhere('mentor_profils.perusahaan', 'like', "%{$keyword}%")

@@ -26,16 +26,16 @@ class ConfirmablePasswordController extends Controller
     {
         if (! Auth::guard('web')->validate([
             'email' => $request->user()->email,
-            'password' => $request->password,
+            'password' => $request->kata_sandi,
         ])) {
             throw ValidationException::withMessages([
-                'password' => __('auth.password'),
+                'kata_sandi' => __('auth.password'),
             ]);
         }
 
         $request->session()->put('auth.password_confirmed_at', time());
 
-        $dashboard = $request->user()->role === 'mentor' ? 'mentor.dashboard' : 'mahasiswa.dashboard';
+        $dashboard = $request->user()->peran === 'mentor' ? 'mentor.dashboard' : 'mahasiswa.dashboard';
 
         return redirect()->intended(route($dashboard, absolute: false));
     }

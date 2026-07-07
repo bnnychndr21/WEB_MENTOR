@@ -10,7 +10,7 @@
                 <i class="bi bi-person-workspace"></i>
             </div>
             <div>
-                <h3>Selamat datang, {{ Auth::user()->name }}!</h3>
+                <h3>Selamat datang, {{ Auth::user()->nama }}!</h3>
                 <p>Bantu mahasiswa menyelesaikan skripsi dan mengembangkan karir</p>
             </div>
         </div>
@@ -115,10 +115,10 @@
                                                              style="width:32px;height:32px;border-radius:50%;object-fit:cover;">
                                                     @else
                                                         <div style="width: 32px; height: 32px; border-radius: 50%; background: #e2e8f0; display: flex; align-items: center; justify-content: center; font-size: .75rem; font-weight: 600;">
-                                                            {{ strtoupper(substr($p->mahasiswa->name ?? '?', 0, 1)) }}
+                                                            {{ strtoupper(substr($p->mahasiswa->nama ?? '?', 0, 1)) }}
                                                         </div>
                                                     @endif
-                                                    <span style="font-size: .875rem; font-weight: 500;">{{ $p->mahasiswa->name ?? '—' }}</span>
+                                                    <span style="font-size: .875rem; font-weight: 500;">{{ $p->mahasiswa->nama ?? '—' }}</span>
                                                 </div>
                                             </td>
                                             <td style="font-size: .85rem;">{{ Str::limit($p->judul, 25) }}</td>
@@ -170,8 +170,8 @@
                         @foreach ($notifikasi as $n)
                             <a href="{{ route('notifikasi.baca', $n->id) }}" class="text-decoration-none">
                                 <div class="activity-item px-3">
-                                    <div class="activity-icon {{ $n->is_read ? 'bg-light text-muted' : 'bg-primary bg-opacity-10 text-primary' }}">
-                                        <i class="bi {{ $n->is_read ? 'bi-envelope-open' : 'bi-envelope-fill' }}"></i>
+                                    <div class="activity-icon {{ $n->dibaca ? 'bg-light text-muted' : 'bg-primary bg-opacity-10 text-primary' }}">
+                                        <i class="bi {{ $n->dibaca ? 'bi-envelope-open' : 'bi-envelope-fill' }}"></i>
                                     </div>
                                     <div class="activity-content">
                                         <div class="activity-title">{{ $n->judul }}</div>

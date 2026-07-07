@@ -15,12 +15,12 @@
                     @else
                         <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center mx-auto border border-3 border-primary"
                              style="width: 130px; height: 130px; font-size: 3rem; color: #fff;">
-                            {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+                            {{ strtoupper(substr(auth()->user()->nama, 0, 1)) }}
                         </div>
                     @endif
                 </div>
                 <h5 class="mt-3 mb-1 fw-bold">
-                    {{ $profil && $profil->gelar ? $profil->gelar . '. ' : '' }}{{ auth()->user()->name }}
+                    {{ $profil && $profil->gelar ? $profil->gelar . '. ' : '' }}{{ auth()->user()->nama }}
                 </h5>
                 <p class="text-muted mb-2" style="font-size: .85rem;">
                     <i class="bi bi-envelope me-1"></i>{{ auth()->user()->email }}

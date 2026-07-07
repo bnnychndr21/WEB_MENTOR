@@ -24,7 +24,7 @@ class AuthenticatedSessionController extends Controller
 
         $user = Auth::user();
 
-        if ($user->role === 'mentor') {
+        if ($user->peran === 'mentor') {
             return redirect()->intended(route('mentor.dashboard', absolute: false));
         }
 

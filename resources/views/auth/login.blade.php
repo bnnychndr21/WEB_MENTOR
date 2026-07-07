@@ -48,15 +48,15 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label fw-medium text-dark small">Password</label>
+                    <label class="form-label fw-medium text-dark small">Kata Sandi</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                        <input type="password" class="form-control password-input @error('password') is-invalid @enderror" name="password" required placeholder="Masukkan password">
+                        <input type="password" class="form-control password-input @error('kata_sandi') is-invalid @enderror" name="kata_sandi" required placeholder="Masukkan kata sandi">
                         <button class="btn btn-outline-secondary toggle-password" type="button" style="border:1.5px solid #e2e8f0;border-radius:0 0.75rem 0.75rem 0;border-left:none;background:#fff;">
                             <i class="bi bi-eye"></i>
                         </button>
                     </div>
-                    @error('password') <div class="invalid-feedback d-block">{{ $message }}</div> @enderror
+                    @error('kata_sandi') <div class="invalid-feedback d-block">{{ $message }}</div> @enderror
                 </div>
 
                 <div class="d-flex align-items-center justify-content-between mb-4">
@@ -65,7 +65,7 @@
                         <label class="form-check-label text-muted-small small" for="remember_me">Ingat saya</label>
                     </div>
                     @if (Route::has('password.request'))
-                        <a href="{{ route('password.request') }}" class="text-decoration-none small fw-medium" style="color:var(--primary);">Lupa password?</a>
+                        <a href="{{ route('password.request') }}" class="text-decoration-none small fw-medium" style="color:var(--primary);">Lupa kata sandi?</a>
                     @endif
                 </div>
 

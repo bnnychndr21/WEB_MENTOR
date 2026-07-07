@@ -11,14 +11,14 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     protected $fillable = [
-        'name',
+        'nama',
         'email',
-        'password',
-        'role',
+        'kata_sandi',
+        'peran',
     ];
 
     protected $hidden = [
-        'password',
+        'kata_sandi',
         'remember_token',
     ];
 
@@ -26,8 +26,13 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'kata_sandi' => 'hashed',
         ];
+    }
+
+    public function getAuthPassword()
+    {
+        return $this->kata_sandi;
     }
 
     public function mahasiswaProfil()

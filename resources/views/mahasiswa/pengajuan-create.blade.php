@@ -18,12 +18,12 @@
                     @else
                         <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center border border-2 border-primary"
                              style="width: 56px; height: 56px; font-size: 1.3rem; color: #fff;">
-                            {{ strtoupper(substr($mentor->user->name, 0, 1)) }}
+                            {{ strtoupper(substr($mentor->user->nama, 0, 1)) }}
                         </div>
                     @endif
                     <div>
                         <h6 class="fw-bold mb-0">
-                            {{ $mentor->gelar ? $mentor->gelar . '. ' : '' }}{{ $mentor->user->name }}
+                            {{ $mentor->gelar ? $mentor->gelar . '. ' : '' }}{{ $mentor->user->nama }}
                         </h6>
                         <p class="text-muted mb-0" style="font-size: .85rem;">
                             @if ($mentor->perusahaan)
@@ -42,7 +42,7 @@
                         </div>
                         <h6 class="fw-bold">Belum Ada Jadwal Tersedia</h6>
                         <p class="text-muted mx-auto" style="max-width: 400px; font-size: .9rem;">
-                            <strong>{{ $mentor->gelar ? $mentor->gelar . '. ' : '' }}{{ $mentor->user->name }}</strong>
+                            <strong>{{ $mentor->gelar ? $mentor->gelar . '. ' : '' }}{{ $mentor->user->nama }}</strong>
                             belum menambahkan jadwal konsultasi. Silakan cek kembali nanti atau cari mentor lain.
                         </p>
                         <div class="d-flex gap-2 justify-content-center mt-3">

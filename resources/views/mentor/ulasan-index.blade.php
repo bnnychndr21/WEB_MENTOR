@@ -50,12 +50,12 @@
                         @else
                             <div class="rounded-circle bg-warning bg-opacity-10 text-warning d-flex align-items-center justify-content-center flex-shrink-0"
                                  style="width: 40px; height: 40px; font-weight: 600;">
-                                {{ strtoupper(substr($u->mahasiswa->name, 0, 1)) }}
+                                {{ strtoupper(substr($u->mahasiswa->nama, 0, 1)) }}
                             </div>
                         @endif
                         <div class="flex-grow-1 min-width-0">
                             <div class="d-flex align-items-center gap-2 flex-wrap">
-                                <span class="fw-semibold">{{ $u->mahasiswa->name }}</span>
+                                <span class="fw-semibold">{{ $u->mahasiswa->nama }}</span>
                                 <div class="text-warning" style="font-size: .85rem;">
                                     @for ($i = 1; $i <= 5; $i++)
                                         <i class="bi bi-star{{ $i <= $u->rating ? '-fill' : '' }}"></i>

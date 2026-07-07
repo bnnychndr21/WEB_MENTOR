@@ -32,11 +32,11 @@
                             @else
                                 <div class="rounded-circle bg-primary bg-opacity-10 text-primary d-flex align-items-center justify-content-center"
                                      style="width: 36px; height: 36px; font-size: .8rem; font-weight: 600;">
-                                    {{ strtoupper(substr($pengajuan->mahasiswa->name, 0, 1)) }}
+                                    {{ strtoupper(substr($pengajuan->mahasiswa->nama, 0, 1)) }}
                                 </div>
                             @endif
                             <div>
-                                <span class="fw-semibold">{{ $pengajuan->mahasiswa->name }}</span>
+                                <span class="fw-semibold">{{ $pengajuan->mahasiswa->nama }}</span>
                                 <div class="text-muted" style="font-size: .8rem;">{{ $pengajuan->mahasiswa->email }}</div>
                             </div>
                         </div>
@@ -114,7 +114,7 @@
                                     </div>
                                     <div class="modal-body" style="padding: 1rem 1.5rem;">
                                         <p class="text-muted mb-3" style="font-size: .9rem;">
-                                            Tolak pengajuan dari <strong>{{ $pengajuan->mahasiswa->name }}</strong>?
+                                            Tolak pengajuan dari <strong>{{ $pengajuan->mahasiswa->nama }}</strong>?
                                         </p>
                                         <label class="form-label fw-semibold" style="font-size: .85rem;">
                                             Alasan Penolakan (opsional)

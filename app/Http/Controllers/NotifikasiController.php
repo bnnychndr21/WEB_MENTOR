@@ -12,7 +12,7 @@ class NotifikasiController extends Controller
             abort(403);
         }
 
-        $notifikasi->update(['is_read' => true]);
+        $notifikasi->update(['dibaca' => true]);
 
         return redirect($notifikasi->url ?? route('mahasiswa.dashboard'));
     }

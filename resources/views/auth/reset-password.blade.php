@@ -23,27 +23,27 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label fw-medium text-dark small">Password Baru</label>
+                    <label class="form-label fw-medium text-dark small">Kata Sandi Baru</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                        <input type="password" class="form-control password-input @error('password') is-invalid @enderror" name="password" required placeholder="Minimal 8 karakter">
+                        <input type="password" class="form-control password-input @error('kata_sandi') is-invalid @enderror" name="kata_sandi" required placeholder="Minimal 8 karakter">
                         <button class="btn btn-outline-secondary toggle-password" type="button" style="border:1.5px solid #e2e8f0;border-radius:0 0.75rem 0.75rem 0;border-left:none;background:#fff;">
                             <i class="bi bi-eye"></i>
                         </button>
                     </div>
-                    @error('password') <div class="invalid-feedback d-block">{{ $message }}</div> @enderror
+                    @error('kata_sandi') <div class="invalid-feedback d-block">{{ $message }}</div> @enderror
                 </div>
 
                 <div class="mb-4">
-                    <label class="form-label fw-medium text-dark small">Konfirmasi Password</label>
+                    <label class="form-label fw-medium text-dark small">Konfirmasi Kata Sandi</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
-                        <input type="password" class="form-control password-input @error('password_confirmation') is-invalid @enderror" name="password_confirmation" required placeholder="Ulangi password">
+                        <input type="password" class="form-control password-input @error('kata_sandi_confirmation') is-invalid @enderror" name="kata_sandi_confirmation" required placeholder="Ulangi kata sandi">
                         <button class="btn btn-outline-secondary toggle-password" type="button" style="border:1.5px solid #e2e8f0;border-radius:0 0.75rem 0.75rem 0;border-left:none;background:#fff;">
                             <i class="bi bi-eye"></i>
                         </button>
                     </div>
-                    @error('password_confirmation') <div class="invalid-feedback d-block">{{ $message }}</div> @enderror
+                    @error('kata_sandi_confirmation') <div class="invalid-feedback d-block">{{ $message }}</div> @enderror
                 </div>
 
                 <button type="submit" class="btn btn-primary w-100 mb-3">

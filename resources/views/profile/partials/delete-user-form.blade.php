@@ -28,17 +28,17 @@
             </p>
 
             <div class="mt-6">
-                <x-input-label for="password" value="{{ __('Password') }}" class="sr-only" />
+                <x-input-label for="kata_sandi" value="{{ __('Kata Sandi') }}" class="sr-only" />
 
                 <x-text-input
-                    id="password"
-                    name="password"
+                    id="kata_sandi"
+                    name="kata_sandi"
                     type="password"
                     class="mt-1 block w-3/4"
-                    placeholder="{{ __('Password') }}"
+                    placeholder="{{ __('Kata Sandi') }}"
                 />
 
-                <x-input-error :messages="$errors->userDeletion->get('password')" class="mt-2" />
+                <x-input-error :messages="$errors->userDeletion->get('kata_sandi')" class="mt-2" />
             </div>
 
             <div class="mt-6 flex justify-end">

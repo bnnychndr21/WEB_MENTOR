@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('title', 'Profil ' . $mentor->user->name)
+@section('title', 'Profil ' . $mentor->user->nama)
 
 @section('content')
 <div class="row g-4">
@@ -14,12 +14,12 @@
                 @else
                     <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center mx-auto border border-3 border-primary"
                          style="width: 120px; height: 120px; font-size: 2.5rem; color: #fff;">
-                        {{ strtoupper(substr($mentor->user->name, 0, 1)) }}
+                        {{ strtoupper(substr($mentor->user->nama, 0, 1)) }}
                     </div>
                 @endif
 
                 <h5 class="fw-bold mt-3 mb-0">
-                    {{ $mentor->gelar ? $mentor->gelar . '. ' : '' }}{{ $mentor->user->name }}
+                    {{ $mentor->gelar ? $mentor->gelar . '. ' : '' }}{{ $mentor->user->nama }}
                 </h5>
 
                 @if ($mentor->status_verifikasi === 'terverifikasi')
@@ -109,11 +109,11 @@
                             <div class="d-flex align-items-start gap-3">
                                 <div class="rounded-circle bg-warning bg-opacity-10 text-warning d-flex align-items-center justify-content-center flex-shrink-0"
                                      style="width: 36px; height: 36px; font-weight: 600;">
-                                    {{ strtoupper(substr($u->mahasiswa->name, 0, 1)) }}
+                                    {{ strtoupper(substr($u->mahasiswa->nama, 0, 1)) }}
                                 </div>
                                 <div class="flex-grow-1 min-width-0">
                                     <div class="d-flex align-items-center gap-2 flex-wrap">
-                                        <span class="fw-semibold" style="font-size: .9rem;">{{ $u->mahasiswa->name }}</span>
+                                        <span class="fw-semibold" style="font-size: .9rem;">{{ $u->mahasiswa->nama }}</span>
                                         <div class="text-warning" style="font-size: .8rem;">
                                             @for ($i = 1; $i <= 5; $i++)
                                                 <i class="bi bi-star{{ $i <= $u->rating ? '-fill' : '' }}"></i>

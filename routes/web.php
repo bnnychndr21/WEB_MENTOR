@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     if (Auth::check()) {
         $user = Auth::user();
-        return redirect($user->role === 'mentor' ? route('mentor.dashboard') : route('mahasiswa.dashboard'));
+        return redirect($user->peran === 'mentor' ? route('mentor.dashboard') : route('mahasiswa.dashboard'));
     }
     return redirect()->route('login');
 });
@@ -26,7 +26,7 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     $user = Auth::user();
     if ($user) {
-        return redirect($user->role === 'mentor' ? route('mentor.dashboard') : route('mahasiswa.dashboard'));
+        return redirect($user->peran === 'mentor' ? route('mentor.dashboard') : route('mahasiswa.dashboard'));
     }
     return redirect('/login');
 })->middleware('auth');

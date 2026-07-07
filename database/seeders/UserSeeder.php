@@ -13,17 +13,17 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         \App\Models\User::create([
-            'name' => 'Mahasiswa Demo',
+            'nama' => 'Mahasiswa Demo',
             'email' => 'mahasiswa@test.com',
-            'password' => bcrypt('password'),
-            'role' => 'mahasiswa',
+            'kata_sandi' => bcrypt('password'),
+            'peran' => 'mahasiswa',
         ]);
 
         \App\Models\User::create([
-            'name' => 'Mentor Demo',
+            'nama' => 'Mentor Demo',
             'email' => 'mentor@test.com',
-            'password' => bcrypt('password'),
-            'role' => 'mentor',
+            'kata_sandi' => bcrypt('password'),
+            'peran' => 'mentor',
         ]);
 
         $this->command->info('User seeder berhasil: mahasiswa@test.com / mentor@test.com (password: password)');
